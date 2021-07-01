@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/lightPink"
+    android:padding="10dp"
+    >
+
+    <TextView
+        android:id="@+id/tv_title_det"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/title"
+        android:textColor="@color/primaryTextMagenta"
+        android:textSize="24sp"
+        />
+
+    <TextView
+        android:id="@+id/tv_content_det"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/content"
+        android:textSize="20sp"
+        android:textColor="@color/secondaryTextMagenta"
+
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        >
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+
+        <ImageView
+            android:id="@+id/buttonDelete"
+            android:layout_width="15pt"
+            android:layout_height="15pt"
+            android:layout_marginRight="10pt"
+            android:src="@drawable/ic_baseline_delete_24"
+            android:contentDescription="@string/deletre" />
+    </LinearLayout>
+</LinearLayout>

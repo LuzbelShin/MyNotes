@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MyNotes</string>
+    <string name="addNote">Add note</string>
+    <string name="title">Title</string>
+    <string name="content">Content</string>
+    <string name="save">Save</string>
+    <string name="titleHint">Title</string>
+    <string name="contentHint">Write a note...</string>
+    <string name="error">Error: Access denied</string>
+    <string name="deletre">DELETE</string>
+</resources>
