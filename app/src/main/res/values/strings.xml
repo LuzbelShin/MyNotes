@@ -5,7 +5,8 @@
     <string name="content">Content</string>
     <string name="save">Save</string>
     <string name="titleHint">Title</string>
-    <string name="contentHint">Write a note...</string>
+    <string name="contentHint">Write a note&#8230;</string>
     <string name="error">Error: Access denied</string>
-    <string name="deletre">DELETE</string>
+    <string name="delete">DELETE</string>
+    <string name="note">Note</string>
 </resources>

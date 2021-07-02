@@ -10,16 +10,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import java.io.File
+
 import java.lang.Exception
 
-class NoteAdapter: BaseAdapter {
-    var context: Context? = null
-    var notes: ArrayList<Note>
-
-    constructor(context: Context, notes: ArrayList<Note>){
-        this.context = context
-        this.notes = notes
-    }
+class NoteAdapter(context: Context, private var notes: ArrayList<Note>) : BaseAdapter() {
+    private var context: Context? = context
 
     override fun getCount(): Int {
         return notes.size
@@ -34,16 +29,16 @@ class NoteAdapter: BaseAdapter {
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        var inflator = LayoutInflater.from(context)
-        var view = inflator.inflate(R.layout.nota_layout, null)
-        var note = notes[position]
+        val inflater = LayoutInflater.from(context)
+        val view = inflater.inflate(R.layout.nota_layout, null)
+        val note = notes[position]
 
-        var title: TextView = view.findViewById(R.id.tv_title_det)
+        val title: TextView = view.findViewById(R.id.tv_title_det)
         title.text = note.title
-        var content: TextView = view.findViewById(R.id.tv_content_det)
+        val content: TextView = view.findViewById(R.id.tv_content_det)
         content.text = note.title
 
-        var delete: ImageView = view.findViewById(R.id.buttonDelete)
+        val delete: ImageView = view.findViewById(R.id.buttonDelete)
         delete.setOnClickListener{
             delete(note.title)
             notes.remove(note)
@@ -69,7 +64,7 @@ class NoteAdapter: BaseAdapter {
     }
 
     private fun location():String{
-        val album = File(Environment.getExternalStorageDirectory(), "notes")
+        val album = File(Environment.DIRECTORY_DOCUMENTS,"${File.separator}notes")
         if(album.exists()){
             album.mkdir()
         }

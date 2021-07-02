@@ -29,7 +29,7 @@ class AddNoteActivity : AppCompatActivity() {
     }
 
     private fun location(): String{
-        val folder = File(Environment.getExternalStorageDirectory(), "notes")
+        val folder = File(Environment.DIRECTORY_DOCUMENTS,"${File.separator}notes")
         if(!folder.exists()){
             folder.mkdir()
         }

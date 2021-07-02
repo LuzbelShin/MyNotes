@@ -9,8 +9,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.io.*
 
 class MainActivity : AppCompatActivity() {
-    var notes = ArrayList<Note>()
-    lateinit var adapter: NoteAdapter
+    private var notes = ArrayList<Note>()
+    private lateinit var adapter: NoteAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         readNotes()
 
-        val listView: ListView = findViewById(R.id.listview) as ListView
+        val listView: ListView = findViewById(R.id.listview)
         adapter = NoteAdapter(this, notes)
         listView.adapter = adapter
 
@@ -29,18 +29,23 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+    
+    private fun readNotes(){
+        notes.clear()
+        val folder = File(location())
 
-    private fun location(): String{
-        val folder = File(Environment.getExternalStorageDirectory(), "notes")
-        if(!folder.exists()){
-            folder.mkdir()
+        if(folder.exists()){
+            val files = folder.listFiles()
+            if(files != null){
+                for (file in files){
+                    readFile(file)
+                }
+            }
         }
-
-        return folder.absolutePath
     }
 
-    private fun readFile(archive: File){
-        val fis = FileInputStream(archive)
+    private fun readFile(file: File){
+        val fis = FileInputStream(file)
         val di = DataInputStream(fis)
         val br = BufferedReader(InputStreamReader(di))
         var strLine: String? = br.readLine()
@@ -54,23 +59,18 @@ class MainActivity : AppCompatActivity() {
         di.close()
         fis.close()
 
-        val name = archive.name.substring(0, archive.name.length-4)
+        val name = file.name.substring(0, file.name.length-4)
         val note = Note(name, myData)
         notes.add(note)
     }
 
-    private fun readNotes(){
-        notes.clear()
-        val folder = File(location())
-
-        if(folder.exists()){
-            val archives = folder.listFiles()
-            if(archives != null){
-                for (archive in archives){
-                    readFile(archive)
-                }
-            }
+    private fun location(): String {
+        val folder = File(Environment.DIRECTORY_DOCUMENTS, "${File.separator}notes")
+        if (!folder.exists()) {
+            folder.mkdir()
         }
+
+        return folder.absolutePath
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
